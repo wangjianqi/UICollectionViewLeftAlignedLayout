@@ -21,7 +21,7 @@ class RightAlignedViewController: UIViewController ,UICollectionViewDataSource, 
         collectionView.backgroundColor = UIColor.white
         collectionView.register(CollectionViewCell.self , forCellWithReuseIdentifier: CollectionViewCell.CellID)
         if let animatedCollectionView = collectionView{
-            Timer.scheduledTimer(timeInterval: 6.0, target: animatedCollectionView, selector: #selector(UICollectionView.reloadData), userInfo: nil, repeats: true)
+//            Timer.scheduledTimer(timeInterval: 6.0, target: animatedCollectionView, selector: #selector(UICollectionView.reloadData), userInfo: nil, repeats: true)
         }
         
     }

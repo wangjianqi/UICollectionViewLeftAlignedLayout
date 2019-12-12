@@ -22,7 +22,7 @@ extension UICollectionViewLayoutAttributes {
 
 class RightNormalAlignedLayout: UICollectionViewFlowLayout {
     
-    
+    // 缓存
     fileprivate var cache = [IndexPath:UICollectionViewLayoutAttributes]()
     
     fileprivate var contentHeight: CGFloat = 0
@@ -34,7 +34,8 @@ class RightNormalAlignedLayout: UICollectionViewFlowLayout {
         let insets = collectionView.contentInset
         return collectionView.bounds.width - (insets.left + insets.right)
     }
-    
+
+    // 缓存CGSize
     var storedCellSize = [IndexPath: CGSize]()
     
     
@@ -64,6 +65,7 @@ class RightNormalAlignedLayout: UICollectionViewFlowLayout {
     override var collectionViewContentSize: CGSize {
         return CGSize(width: contentWidth, height: contentHeight)
     }
+
     let lock = NSLock()
     override func prepare() {
         lock.lock()
@@ -87,9 +89,13 @@ class RightNormalAlignedLayout: UICollectionViewFlowLayout {
             for item in 0..<count{
                 currentXOffset = nextXOffset
                 currentYOffset = nextYOffset
+                // 获取indexPath
                 let indexPath = IndexPath(item: item, section: section)
+                // 获取当前布局属性
                 let currentItemAttributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                // 获取当前CGSize
                 let currentIndexPathSize = queryItemSize(indexPath)
+                // 是否换行
                 let currentItemInNext = (currentXOffset + evaluatedMinimumInteritemSpacing(at: section) + currentIndexPathSize.width) > (collectionView.frame.width - sectionInset.right + 0.1)
                 if currentItemInNext{
                     currentXOffset = sectionInset.left

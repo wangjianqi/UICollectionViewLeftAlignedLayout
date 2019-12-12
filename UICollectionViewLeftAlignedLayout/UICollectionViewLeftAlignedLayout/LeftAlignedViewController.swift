@@ -11,7 +11,7 @@ class LeftAlignedViewController: UIViewController,UICollectionViewDataSource, UI
         collectionView.backgroundColor = UIColor.white
         collectionView.register(CollectionViewCell.self , forCellWithReuseIdentifier: CollectionViewCell.CellID)
         if let animatedCollectionView = collectionView{
-            Timer.scheduledTimer(timeInterval: 6.0, target: animatedCollectionView, selector: #selector(UICollectionView.reloadData), userInfo: nil, repeats: true)
+//            Timer.scheduledTimer(timeInterval: 6.0, target: animatedCollectionView, selector: #selector(UICollectionView.reloadData), userInfo: nil, repeats: true)
         }
         
     }
@@ -32,7 +32,8 @@ class LeftAlignedViewController: UIViewController,UICollectionViewDataSource, UI
         
         return cell;
     }
-    
+
+    // 返回Layout尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let  randomWidth = (arc4random() % 120) + 60;
         return CGSize(width: CGFloat(randomWidth), height: 60);
